@@ -4,11 +4,11 @@ app.controller('pincodeController', ['$scope', '$http', 'usSpinnerService', func
 	$scope.show = false;
 
 	$scope.startSpin = function(){
-		usSpinnerService.spin('spinner-1');
+		usSpinnerService.spin('fetch-spinner');
 	}
 
 	$scope.stopSpin = function(){
-		usSpinnerService.stop('spinner-1');
+		usSpinnerService.stop('fetch-spinner');
 	}	
 
 	$scope.fetch = function(pincode){
@@ -33,7 +33,5 @@ app.controller('pincodeController', ['$scope', '$http', 'usSpinnerService', func
 			$scope.show = false;
 		}
 	}
-
-	$scope.fetch('686667');
 
 }]);;
