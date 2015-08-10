@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="spin.js"></script>
+    <script src="angular-spinner.min.js"></script>
+  </head>
+  <body ng-app="pincodeModule" ng-controller="pincodeController">
+    <div class="container">
+      <!-- <label>Search: </label><input class="form-control" type="text" ng-model="test"> -->
+      <div class="well" style="margin-top:20px;">      
+        <p>Search Indian Pincodes</p>
+        <label>Search by Pincode</label>
+        <input class="form-control" type="text" ng-change="fetch(pincode)" ng-model="pincode"/>
+        <span us-spinner spinner-key="spinner-1"></span>
+      </div>
+      <table class="table table-bordered" border="1">
+        <tr ng-show="show" ng-model="header">
+        <th>#</th>
+        <!-- <th>id</th> -->
+        <!-- <th>timestamp </th> -->
+        <th>Office name</th>
+        <th>Pincode</th>
+        <!-- <th>officeTypes</th> -->
+        <th>Delivery</th>
+        <th>Division</th>
+        <th>Region</th>
+        <th>Circle</th>
+        <th>Taluk</th>
+        <th>District</th>
+        <th>State   </th>
+        <th>Telephone</th>
+        </tr>
+        <tr ng-repeat="pincode in pincodes | orderBy:'state' | filter:test">
+          <td>{{$index + 1}}</td>
+          <!-- <td>{{pincode.id}}</td> -->
+          <!-- <td>{{pincode.timestamp}}</td> -->
+          <td>{{pincode.officename}}</td>
+          <td>{{pincode.pincode}}</td>
+          <!-- <td>{{pincode.officeType}}</td> -->
+          <td>{{pincode.Deliverystatus}}</td>
+          <td>{{pincode.divisionname}}</td>
+          <td>{{pincode.regionname}}</td>
+          <td>{{pincode.circlename}}</td>
+          <td>{{pincode.Taluk}}</td>
+          <td>{{pincode.Districtname}}</td>
+          <td>{{pincode.statename}}</td>
+          <td>{{pincode.Telephone}}</td>
+        </tr>
+      </ul>
+    </div>
+  </body>
+<script src="pincodeController.js"></script>
+</html>
