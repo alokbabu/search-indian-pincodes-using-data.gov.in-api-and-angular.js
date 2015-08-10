@@ -6,5 +6,5 @@ demo: http://nextuz.com/projects/indian-pincode-search-using-angular/
 
 ### Example
 
-Online (http://nextuz.com/projects/indian-pincode-search-using-angular/)
+Online [Example](http://nextuz.com/projects/indian-pincode-search-using-angular/)
 
