@@ -1,10 +1,10 @@
 <!doctype html>
 <html>
   <head>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-    <script src="spin.js"></script>
-    <script src="angular-spinner.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="ng-core/angular.min.js"></script>
+    <script src="modules/app.js"></script>
   </head>
   <body ng-app="pincodeModule" ng-controller="pincodeController">
     <div class="container">
@@ -51,5 +51,9 @@
       </ul>
     </div>
   </body>
-<script src="pincodeController.js"></script>
+<script src="services/data-services.js"></script>
+<script src="controllers/pincodeController.js"></script>
+<script src="ng-core/spin.js"></script>
+<script src="ng-core/angular-spinner.min.js"></script>
+<script src="ng-core/angular-route.min.js"></script>
 </html>
