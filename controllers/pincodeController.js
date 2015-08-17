@@ -1,35 +1,50 @@
 app.controller('pincodeController', ['$scope', '$http', 'usSpinnerService', 'dataService', function($scope, $http, usSpinnerService, dataService){
-	$scope.show = false;
+	
+	//$scope.show = true;
 
 	$scope.startSpin = function(){
-		usSpinnerService.spin('fetch-spinner');
+		usSpinnerService.spin('spinner');
 	}
 
 	$scope.stopSpin = function(){
-		usSpinnerService.stop('fetch-spinner');
-	}	
-
-	$scope.fetch = function(pincode){
-		if(pincode.length > 5)
-		{
-			$scope.startSpin();			
-			getPincodesByPincode(pincode);
-			$scope.stopSpin();
-			
-			function getPincodesByPincode(pincode)
-			{
-				dataService.fetchPincode(pincode).success(function (response)
-				{
-					$scope.pincodes = response.records;					
-				});
-			}					
-			$scope.show = true;
-		}
-		else
-		{
-			$scope.pincodes = "";
-			$scope.show = false;
-		}
+		usSpinnerService.stop('spinner');
 	}
 
-}]);;
+
+	$scope.fetchData = function(keyword){
+
+	   var finishedLookingInPincodes =	dataService.fetchPincode(keyword).then(function(response){
+			$scope.results = response.data.records;	
+		});
+
+	    var finishedLookingInBO = finishedLookingInPincodes.then(function(){	    	
+		    dataService.fetchOfficeBO(keyword).then(function(response){
+		    	if($scope.results.length == 0)
+			    {			    	
+					$scope.results = response.data.records;
+				}
+	    	});
+	    });
+
+	    var finishedLookingInSO = finishedLookingInBO.then(function(){
+    		dataService.fetchOfficeSO(keyword).then(function(response){
+		    	if($scope.results.length == 0)
+		    	{
+					$scope.results = response.data.records;
+				}
+	    	});	    
+	    });
+
+	    var finishedLookingInHO = finishedLookingInSO.then(function(){
+	    		dataService.fetchOfficeHO(keyword).then(function(response){ 
+    			if($scope.results.length == 0)
+	    		{
+					$scope.results = response.data.records;
+				}
+	    	});
+	    });
+
+	    usSpinnerService.stop('spinner');
+	}
+
+}]);

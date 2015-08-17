@@ -11,12 +11,13 @@
       <!-- <label>Search: </label><input class="form-control" type="text" ng-model="test"> -->
       <div class="well" style="margin-top:20px;">      
         <p>Search Indian Pincodes</p>
-        <label>Search by Pincode</label>
-        <input class="form-control" type="text" ng-change="fetch(pincode)" ng-model="pincode"/>
-        <span us-spinner spinner-key="fetch-spinner"></span>
+        <label>Search by Pincode, officename</label>
+        <input class="form-control" type="text" ng-model="keyword" placeholder="Search by pincode, officename"/>
+        <button ng-click="fetchData(keyword)" class="btn btn-primary">Search</button>
+        <span us-spinner spinner-key="spinner"></span>
       </div>
       <table class="table table-bordered" border="1">
-        <tr ng-show="show" ng-model="header">
+        <tr>
         <th>#</th>
         <!-- <th>id</th> -->
         <!-- <th>timestamp </th> -->
@@ -29,31 +30,31 @@
         <th>Circle</th>
         <th>Taluk</th>
         <th>District</th>
-        <th>State   </th>
+        <th>State </th>
         <th>Telephone</th>
         </tr>
-        <tr ng-repeat="pincode in pincodes | orderBy:'state' | filter:test">
+        <tr ng-repeat="result in results | orderBy:'state' | filter:test">
           <td>{{$index + 1}}</td>
           <!-- <td>{{pincode.id}}</td> -->
           <!-- <td>{{pincode.timestamp}}</td> -->
-          <td>{{pincode.officename}}</td>
-          <td>{{pincode.pincode}}</td>
+          <td>{{result.officename}}</td>
+          <td>{{result.pincode}}</td>
           <!-- <td>{{pincode.officeType}}</td> -->
-          <td>{{pincode.Deliverystatus}}</td>
-          <td>{{pincode.divisionname}}</td>
-          <td>{{pincode.regionname}}</td>
-          <td>{{pincode.circlename}}</td>
-          <td>{{pincode.Taluk}}</td>
-          <td>{{pincode.Districtname}}</td>
-          <td>{{pincode.statename}}</td>
-          <td>{{pincode.Telephone}}</td>
+          <td>{{result.Deliverystatus}}</td>
+          <td>{{result.divisionname}}</td>
+          <td>{{result.regionname}}</td>
+          <td>{{result.circlename}}</td>
+          <td>{{result.Taluk}}</td>
+          <td>{{result.Districtname}}</td>
+          <td>{{result.statename}}</td>
+          <td>{{result.Telephone}}</td>
         </tr>
       </ul>
     </div>
   </body>
-<script src="services/data-services.js"></script>
-<script src="controllers/pincodeController.js"></script>
-<script src="ng-core/spin.js"></script>
-<script src="ng-core/angular-spinner.min.js"></script>
-<script src="ng-core/angular-route.min.js"></script>
+  <script src="services/data-services.js"></script>
+  <script src="controllers/pincodeController.js"></script>
+  <script src="ng-core/angular-spinner.min.js"></script>
+  <script src="ng-core/spin.js"></script>
+  <script src="ng-core/angular-route.min.js"></script>
 </html>
